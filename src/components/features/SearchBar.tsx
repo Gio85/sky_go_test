@@ -16,11 +16,11 @@ const StyledInput = styled.input`
 
   :focus-visible {
     outline: none;
-    border: 1px solid ${(props) => props.color};
+    border: 1px solid ${COLORS.FOCUS_BORDER_COLOR};
     box-shadow: 0 0 5px rgba(81, 203, 238, 1);
   }
 `
 
 export const SearchBar: React.FC<IProp> = (props) => {
-  return <StyledInput color={COLORS.focusBorderColor} placeholder={'Search...'} autoFocus onChange={props.onChange} />
+  return <StyledInput placeholder={'Search...'} autoFocus onChange={props.onChange} />
 }

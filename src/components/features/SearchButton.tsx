@@ -8,10 +8,10 @@ const StyledButton = styled.button`
   border: none;
   cursor: pointer;
   :hover {
-    color: ${props => props.color};
+    color: ${COLORS.FOCUS_BORDER_COLOR};
   }
 `
 
 export const SearchButton: React.FC = () => {
-  return <StyledButton color={COLORS.focusBorderColor} type="submit"><i className='fas fa-search'/></StyledButton>
+  return <StyledButton type="submit"><i className='fas fa-search'/></StyledButton>
 }

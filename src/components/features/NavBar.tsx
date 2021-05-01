@@ -7,7 +7,7 @@ import { COLORS } from '../../shared/style'
 const StyledNav = styled.div`
   display: flex;
   justify-content: center;
-  background-color: ${props => props.color}
+  background-color: ${COLORS.DARK_BLUE};
 `
 
 const StyledForm = styled.form`
@@ -20,8 +20,9 @@ const StyledTitle = styled.h1`
   font-size: 1.8rem;
   margin: 5px;
   font-style: italic;
-  color: ${props => props.color};
-  text-shadow: 1px 0 0 #fff, -1px 0 0 #fff, 0 1px 0 #fff, 0 -1px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
+  color: ${COLORS.TITLE};
+  text-shadow: 1px 0 0 ${COLORS.WHITE}, -1px 0 0 ${COLORS.WHITE}, 0 1px 0 ${COLORS.WHITE}, 0 -1px 0 ${COLORS.WHITE},
+    1px 1px ${COLORS.WHITE}, -1px -1px 0 ${COLORS.WHITE}, 1px -1px 0 ${COLORS.WHITE}, -1px 1px 0 ${COLORS.WHITE};
 `
 
 export const NavBar: React.FC = () => {
@@ -36,12 +37,12 @@ export const NavBar: React.FC = () => {
   }
 
   return (
-    <StyledNav color={COLORS.darkBlue}>
-      <StyledTitle color={COLORS.title}>Sky Go</StyledTitle>
-        <StyledForm onSubmit={onSubmit}>
-          <SearchBar onChange={onChange} />
-          <SearchButton />
-        </StyledForm>
+    <StyledNav>
+      <StyledTitle>Sky Go</StyledTitle>
+      <StyledForm onSubmit={onSubmit}>
+        <SearchBar onChange={onChange} />
+        <SearchButton />
+      </StyledForm>
     </StyledNav>
   )
 }
