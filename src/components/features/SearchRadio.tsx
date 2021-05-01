@@ -21,7 +21,12 @@ export const SearchRadio: React.FC = () => {
   return (
     <StyledRadioWrapper>
       {options.map((option, i) => (
-        <RadioButton key={i} label={option.label} onChange={onChange} checked={option.label.toLowerCase() === searchType} />
+        <RadioButton
+          key={i}
+          label={option.label}
+          onChange={onChange}
+          checked={option.label.toLowerCase() === searchType}
+        />
       ))}
     </StyledRadioWrapper>
   )

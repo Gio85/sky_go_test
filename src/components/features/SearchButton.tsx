@@ -13,5 +13,9 @@ const StyledButton = styled.button`
 `
 
 export const SearchButton: React.FC = () => {
-  return <StyledButton type="submit"><i className='fas fa-search'/></StyledButton>
+  return (
+    <StyledButton type="submit">
+      <i className="fas fa-search" />
+    </StyledButton>
+  )
 }
