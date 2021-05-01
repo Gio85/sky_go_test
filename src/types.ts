@@ -18,6 +18,14 @@ export enum ENDPOINT {
   ACTORS = 'person'
 }
 
+export enum ROUTE {
+  HOME = '/',
+  READ_MOVIE = '/movie/:id',
+  READ_SHOW = '/tv/:id',
+  READ_ACTORS = '/person/:id'
+}
+
+
 interface IEntity {
   genre_ids: number[]
   id: number

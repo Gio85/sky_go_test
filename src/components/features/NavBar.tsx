@@ -9,7 +9,6 @@ const StyledNav = styled.div`
   display: flex;
   justify-content: center;
   background-color: ${COLORS.LIGHT_GREY};
-  position: fixed;
   width: 100%;
 `
 
