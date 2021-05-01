@@ -4,3 +4,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.is-active {
+  color: #1E90FFFF;
+}
