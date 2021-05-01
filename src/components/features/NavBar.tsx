@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { SearchBar } from './SearchBar'
 import { SearchButton } from './SearchButton'
 import { COLORS } from '../../shared/style'
+import { SearchRadio } from './SearchRadio'
 
 const StyledNav = styled.div`
   display: flex;
@@ -25,7 +26,7 @@ const StyledTitle = styled.h1`
   font-style: italic;
   background-size: 110%;
   background-repeat: repeat;
-  background-image: linear-gradient(45deg, #f3ec78, #af4261, #475d99);
+  background-image: linear-gradient(135deg, ${COLORS.ORANGE}, ${COLORS.RED}, ${COLORS.BLUE}, ${COLORS.PURPLE});
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   -moz-background-clip: text;
@@ -49,6 +50,7 @@ export const NavBar: React.FC = () => {
         <SearchBar onChange={onChange} />
         <SearchButton />
       </StyledForm>
+      <SearchRadio />
     </StyledNav>
   )
 }
