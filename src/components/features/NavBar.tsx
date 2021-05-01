@@ -34,11 +34,13 @@ const StyledTitle = styled.h1`
 `
 
 export const NavBar: React.FC = () => {
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value)
+  const onChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.value.length >= 5) {
+      console.log('e.target.value >>> ', e.target.value)
+    }
   }
 
-  const onSubmit = (e: React.FormEvent) => {
+  const onSubmit = (e: any) => {
     e.preventDefault()
     console.log('e >>> ', e)
   }
