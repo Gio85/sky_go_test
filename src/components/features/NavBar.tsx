@@ -28,7 +28,6 @@ const StyledTitle = styled.h1`
 export const NavBar: React.FC = () => {
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     console.log(e.target.value)
-    return '' as unknown
   }
 
   const onSubmit = (e: React.FormEvent) => {
