@@ -1,14 +1,14 @@
-import React  from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import { COLORS } from '../../shared/style'
 import { Link } from 'react-router-dom'
+import { generateLink, getImageUrl } from '../../shared'
+import { TEntity } from '../../types'
 import { useDispatch } from 'react-redux'
-import { setEntityAction } from '../../store/features/currentEntity'
-import { getImageForResult } from '../../shared'
+import { resetSuggestionsListAction, setSuggestionAction } from '../../store/features/selectedSuggestion'
 
 interface IProp {
-  suggestions: any[] // TODO fix this type
-  callback: (data: any) => unknown
+  suggestions: TEntity[]
 }
 
 const StyledSuggestionsContainer = styled.div`
@@ -50,7 +50,6 @@ const StyledLink = styled(Link)`
 
 export const Suggestions: React.FC<IProp> = (props) => {
   const dispatch = useDispatch()
-
   return (
     <>
       {props.suggestions.length > 0 && (
@@ -59,10 +58,10 @@ export const Suggestions: React.FC<IProp> = (props) => {
             {props.suggestions.map((s, i) => (
               <StyledSuggestion key={i}>
                 <StyledLink
-                  to={`/current_entity`}
+                  to={generateLink(s)}
                   onClick={() => {
-                    dispatch(setEntityAction(s))
-                    props.callback(s)
+                    dispatch(setSuggestionAction(s))
+                    dispatch(resetSuggestionsListAction())
                   }}
                 >
                   <StyledItem>
@@ -70,11 +69,7 @@ export const Suggestions: React.FC<IProp> = (props) => {
                     <StyledImage
                       data-testid="suggestion__image"
                       className="suggestion__image"
-                      src={
-                        getImageForResult(s)
-                          ? `//image.tmdb.org/t/p/original${getImageForResult(s)}`
-                          : '/im-an-actor.jpeg'
-                      }
+                      src={getImageUrl(s) ? `//image.tmdb.org/t/p/original${getImageUrl(s)}` : '/im-an-actor.jpeg'}
                     />
                   </StyledItem>
                 </StyledLink>

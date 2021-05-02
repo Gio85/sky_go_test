@@ -1,11 +1,14 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import { COLORS } from '../../shared/style'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { IRootStore } from '../../types'
 import { ApiClient } from '../../data/api/client'
 import { SearchButton } from './SearchButton'
+import { useHistory } from 'react-router-dom'
 import { Suggestions } from './Suggestions'
+import { resetEntityAction } from '../../store/features/currentEntity'
+import { setSuggestionsListAction } from '../../store/features/selectedSuggestion'
 
 const StyledInput = styled.input`
   width: 50%;
@@ -23,42 +26,25 @@ const StyledInput = styled.input`
 `
 
 export const SearchBar: React.FC = () => {
-  const [suggestions, setSuggestions] = useState<any[]>([])
   const category = useSelector((store: IRootStore) => store.category.selectedCategory)
+  const suggestions = useSelector((store: IRootStore) => store.selectedSuggestion.suggestionsList)
+  const dispatch = useDispatch()
   const client = ApiClient.getInstance()
+  const history = useHistory()
 
   const onChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.value.length >= 5) {
+      history.push('/')
+      dispatch(resetEntityAction())
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       const res = await client[category].search(e.target.value)
-      setSuggestions(res.results.splice(0, 5))
+      dispatch(setSuggestionsListAction(res.results.splice(0, 5)))
     }
   }
 
   const onKeyDown = (e: any) => {
-    // const { filteredOptions, activeOption } = stateObj
     console.log(e.keyCode)
-    // if (e.keyCode === 13) {
-    //   setStateObj({
-    //     activeOption: 0,
-    //     showSuggestions: false,
-    //     userInput: filteredOptions[activeOption]
-    //   })
-    // } else if (e.keyCode === 38) {
-    //   if (activeOption === 0) {
-    //     return
-    //   }
-    //   setStateObj({ activeOption: activeOption - 1 })
-    // } else if (e.keyCode === 40) {
-    //   if (activeOption - 1 === filteredOptions.length) {
-    //     return
-    //   }
-    //   setStateObj({ activeOption: activeOption + 1 })
-    // }
-    //   38 up
-    //  40 down
-    //   13 enter
   }
 
   return (
@@ -73,7 +59,7 @@ export const SearchBar: React.FC = () => {
         onKeyDown={onKeyDown}
       />
       <SearchButton />
-      <Suggestions suggestions={suggestions} callback={setSuggestions} />
+      <Suggestions suggestions={suggestions} />
     </div>
   )
 }
