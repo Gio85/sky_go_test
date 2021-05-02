@@ -17,17 +17,9 @@ export const getImageUrl = (entity: TEntity): string => {
 export const generateLink = (entity: TEntity): string => {
   let basePath = ''
 
-  if (isActor(entity)) {
-    basePath = '/person'
-  }
-
-  if (isShow(entity)) {
-    basePath = '/shows'
-  }
-
-  if (isMovie(entity)) {
-    basePath = '/movies'
-  }
+  if (isActor(entity)) basePath = '/person'
+  if (isShow(entity)) basePath = '/shows'
+  if (isMovie(entity)) basePath = '/movies'
 
   return `${basePath}/${entity.id}`
 }
