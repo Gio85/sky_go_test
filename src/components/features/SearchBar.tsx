@@ -9,6 +9,7 @@ import { useHistory } from 'react-router-dom'
 import { Suggestions } from './Suggestions'
 import { resetEntityAction } from '../../store/features/currentEntity'
 import { setSuggestionsListAction } from '../../store/features/selectedSuggestion'
+import { resetResultsAction } from '../../store/features/result'
 
 const StyledInput = styled.input`
   width: 50%;
@@ -36,6 +37,7 @@ export const SearchBar: React.FC = () => {
     if (e.target.value.length >= 5) {
       history.push('/')
       dispatch(resetEntityAction())
+      dispatch(resetResultsAction())
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       const res = await client[category].search(e.target.value)

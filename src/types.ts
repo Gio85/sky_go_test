@@ -101,10 +101,15 @@ export interface ISelectedSuggestion<T> {
   suggestionsList: T[] | []
 }
 
+export interface IResultsStore<T> {
+  results: T[]
+}
+
 export type TEntity = IActor & IShow & IMovie
 
 export interface IRootStore {
   category: ICategoryStore
   currentEntity: ICurrentEntity<TEntity>
   selectedSuggestion: ISelectedSuggestion<TEntity>
+  results: IResultsStore<TEntity>
 }

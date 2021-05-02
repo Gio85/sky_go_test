@@ -3,6 +3,11 @@ import styled from 'styled-components'
 import { SearchBar } from './SearchBar'
 import { COLORS } from '../../shared/style'
 import { SearchRadio } from './SearchRadio'
+import { useDispatch, useSelector } from 'react-redux'
+import { IRootStore } from '../../types'
+import { ApiClient } from '../../data/api/client'
+import { setResultsAction } from '../../store/features/result'
+import { resetSuggestionsListAction } from '../../store/features/selectedSuggestion'
 
 const StyledNav = styled.div`
   display: flex;
@@ -32,9 +37,17 @@ const StyledTitle = styled.h1`
 `
 
 export const NavBar: React.FC = () => {
-  const onSubmit = (e: any) => {
+  const category = useSelector((store: IRootStore) => store.category.selectedCategory)
+  const client = ApiClient.getInstance()
+  const dispatch = useDispatch()
+  const onSubmit = async (e: any) => {
     e.preventDefault()
-    console.log('e >>> ', e.target.input.value)
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    const res = await client[category].search(e.target.input.value)
+    dispatch(setResultsAction(res.results))
+    dispatch(resetSuggestionsListAction())
+
   }
 
   return (
