@@ -4,6 +4,7 @@ import { RadioButton } from './RadioButton'
 import { IOptions, IRootStore } from '../../types'
 import { useDispatch, useSelector } from 'react-redux'
 import { setCategoryAction } from '../../store/features/categories'
+import { resetSuggestionsListAction } from '../../store/features/selectedSuggestion'
 
 const StyledRadioWrapper = styled.div`
   margin: 10px;
@@ -16,6 +17,7 @@ export const SearchRadio: React.FC = () => {
   const category = useSelector((store: IRootStore) => store.category.selectedCategory)
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(resetSuggestionsListAction())
     dispatch(setCategoryAction(e.target.value.toLowerCase()))
   }
 

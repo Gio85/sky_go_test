@@ -1,15 +1,33 @@
-export const getImageForResult = ({
-  profile_path,
-  backdrop_path,
-  poster_path,
-  known_for
-}: {
-  profile_path: string
-  backdrop_path: string
-  poster_path: string
-  known_for: any[]
-}) =>
-  profile_path || // person
-  backdrop_path || // movie
-  poster_path || // movie
-  (known_for && (known_for.find((kf) => kf.backdrop_path) || {}).backdrop_path) // person
+import { TEntity } from '../types'
+
+export const isActor = (entity: TEntity): boolean => !!entity.known_for || !!entity.also_known_as
+export const isMovie = (entity: TEntity): boolean => !!entity.title
+export const isShow = (entity: TEntity): boolean => !!(entity.name && !entity.known_for && !entity.also_known_as)
+
+export const getImageUrl = (entity: TEntity): string => {
+  let imageUrl = ''
+
+  if(isActor(entity)) imageUrl = entity.profile_path
+  if(isShow(entity)) imageUrl = entity.poster_path
+  if(isMovie(entity)) imageUrl = entity.backdrop_path || entity.poster_path
+
+  return imageUrl
+}
+
+export const generateLink = (entity: TEntity): string => {
+  let basePath = ''
+
+  if (isActor(entity)) {
+    basePath = '/person'
+  }
+
+  if (isShow(entity)) {
+    basePath = '/shows'
+  }
+
+  if (isMovie(entity)) {
+    basePath = '/movies'
+  }
+
+  return `${basePath}/${entity.id}`
+}
