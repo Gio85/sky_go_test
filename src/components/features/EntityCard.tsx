@@ -1,11 +1,12 @@
 import React from 'react'
 import { TEntity } from '../../types'
-import { generateLink, getImageUrl, isActor, isMovie, isShow } from '../../shared'
+import { generateLink, isActor, isMovie, isShow } from '../../shared'
 import styled from 'styled-components'
 import { COLORS } from '../../shared/style'
 import { Link } from 'react-router-dom'
 import { setSuggestionAction } from '../../store/features/selectedSuggestion'
 import { useDispatch } from 'react-redux'
+import { Image } from '../../shared/components/Image'
 
 interface IProp {
   entity: TEntity
@@ -29,7 +30,7 @@ const StyledTitle = styled.h2`
   text-align: center;
 `
 
-const StyledImage = styled.img`
+const StyledImage = styled(Image)`
   border-radius: 5px;
   max-height: 700px;
   width: 100%;
@@ -79,17 +80,7 @@ export const Card: React.FC<IProp> = (props) => {
   const dispatch = useDispatch()
   return (
     <StyledCard>
-      {entity && (
-        <StyledImage
-          data-testid="suggestion__image"
-          className="suggestion__image"
-          src={
-            getImageUrl(entity as any)
-              ? `//image.tmdb.org/t/p/original${getImageUrl(entity as any)}`
-              : '/im-an-actor.jpeg'
-          }
-        />
-      )}
+      {entity && <StyledImage entity={entity} />}
       <StyledTitle>{entity?.name || entity?.title}</StyledTitle>
       <StyledPopularity>
         {popularity(entity.vote_average || entity.popularity).map((s, i) => (

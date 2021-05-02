@@ -45,12 +45,8 @@ export const SearchBar: React.FC = () => {
     }
   }
 
-  const onKeyDown = (e: any) => {
-    console.log(e.keyCode)
-  }
-
   return (
-    <div>
+    <React.Fragment>
       <StyledInput
         type="text"
         placeholder={'Search...'}
@@ -58,10 +54,9 @@ export const SearchBar: React.FC = () => {
         onChange={onChange}
         name="input"
         autoComplete="off"
-        onKeyDown={onKeyDown}
       />
       <SearchButton />
       <Suggestions suggestions={suggestions} />
-    </div>
+    </React.Fragment>
   )
 }

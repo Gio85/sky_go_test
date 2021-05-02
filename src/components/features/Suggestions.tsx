@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { COLORS } from '../../shared/style'
 import { Link } from 'react-router-dom'
-import { generateLink, getImageUrl } from '../../shared'
+import { generateLink } from '../../shared'
 import { TEntity } from '../../types'
 import { useDispatch } from 'react-redux'
 import { resetSuggestionsListAction, setSuggestionAction } from '../../store/features/selectedSuggestion'
@@ -19,17 +19,12 @@ const StyledSuggestionsContainer = styled.div`
 const StyledSuggestions = styled.ul`
   position: absolute;
   list-style-type: none;
+  top: 0;
+  width: 30%;
 `
 
 const StyledSuggestion = styled.li`
   border-radius: 5px;
-  width: 580px;
-`
-
-const StyledImage = styled.img`
-  border-radius: 5px;
-  height: 58px;
-  margin-left: 3px;
 `
 
 const StyledItem = styled.div`
@@ -51,33 +46,27 @@ const StyledLink = styled(Link)`
 export const Suggestions: React.FC<IProp> = (props) => {
   const dispatch = useDispatch()
   return (
-    <>
+    <StyledSuggestionsContainer>
       {props.suggestions.length > 0 && (
-        <StyledSuggestionsContainer>
-          <StyledSuggestions>
-            {props.suggestions.map((s, i) => (
-              <StyledSuggestion key={i}>
-                <StyledLink
-                  to={generateLink(s)}
-                  onClick={() => {
-                    dispatch(setSuggestionAction(s))
-                    dispatch(resetSuggestionsListAction())
-                  }}
-                >
-                  <StyledItem>
-                    <StyledMovieTitle>{s.name || s.title}</StyledMovieTitle>
-                    <StyledImage
-                      data-testid="suggestion__image"
-                      className="suggestion__image"
-                      src={getImageUrl(s) ? `//image.tmdb.org/t/p/original${getImageUrl(s)}` : '/im-an-actor.jpeg'}
-                    />
-                  </StyledItem>
-                </StyledLink>
-              </StyledSuggestion>
-            ))}
-          </StyledSuggestions>
-        </StyledSuggestionsContainer>
+        <StyledSuggestions>
+          {props.suggestions.map((s, i) => (
+            <StyledSuggestion key={i}>
+              <StyledLink
+                to={generateLink(s)}
+                onClick={() => {
+                  dispatch(setSuggestionAction(s))
+                  dispatch(resetSuggestionsListAction())
+                }}
+              >
+                <StyledItem>
+                  <StyledMovieTitle>{s.name || s.title}</StyledMovieTitle>
+                </StyledItem>
+              </StyledLink>
+            </StyledSuggestion>
+          ))}
+        </StyledSuggestions>
       )}
-    </>
+    </StyledSuggestionsContainer>
+
   )
 }
