@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 import { SearchBar } from './SearchBar'
-import { SearchButton } from './SearchButton'
 import { COLORS } from '../../shared/style'
 import { SearchRadio } from './SearchRadio'
 
@@ -33,23 +32,17 @@ const StyledTitle = styled.h1`
 `
 
 export const NavBar: React.FC = () => {
-  const onChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.value.length >= 5) {
-      console.log('e.target.value >>> ', e.target.value)
-    }
-  }
 
   const onSubmit = (e: any) => {
     e.preventDefault()
-    console.log('e >>> ', e)
+    console.log('e >>> ', e.target.input.value)
   }
 
   return (
     <StyledNav>
       <StyledTitle>skyGo</StyledTitle>
       <StyledForm onSubmit={onSubmit}>
-        <SearchBar onChange={onChange} />
-        <SearchButton />
+        <SearchBar />
       </StyledForm>
       <SearchRadio />
     </StyledNav>

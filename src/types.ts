@@ -20,11 +20,11 @@ export enum ENDPOINT {
 
 export enum ROUTE {
   HOME = '/',
-  READ_MOVIE = '/movie/:id',
-  READ_SHOW = '/tv/:id',
-  READ_ACTORS = '/person/:id'
+  READ_MOVIE = '/movies/:id',
+  READ_SHOW = '/shows/:id',
+  READ_ACTORS = '/person/:id',
+  CURRENT_ENTITY = '/current_entity'
 }
-
 
 interface IEntity {
   genre_ids: number[]
@@ -78,4 +78,18 @@ interface IActorKnownFor extends IEntity {
 
 export interface IOptions {
   label: string
+}
+
+export interface ICategoryStore {
+  selectedCategory: string
+}
+
+export interface ICurrentEntity<T> {
+  entity: T | null
+}
+
+export type TEntity = IActor & IShow & IMovie
+export interface IRootStore {
+  category: ICategoryStore
+  currentEntity: ICurrentEntity<TEntity>
 }
