@@ -7,9 +7,9 @@ export const isShow = (entity: TEntity): boolean => !!(entity.name && !entity.kn
 export const getImageUrl = (entity: TEntity): string => {
   let imageUrl = ''
 
-  if(isActor(entity)) imageUrl = entity.profile_path
-  if(isShow(entity)) imageUrl = entity.poster_path
-  if(isMovie(entity)) imageUrl = entity.backdrop_path || entity.poster_path
+  if (isActor(entity)) imageUrl = entity.profile_path
+  if (isShow(entity)) imageUrl = entity.poster_path
+  if (isMovie(entity)) imageUrl = entity.backdrop_path || entity.poster_path
 
   return imageUrl
 }

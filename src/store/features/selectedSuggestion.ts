@@ -25,5 +25,9 @@ export const suggestionSlice = createSlice({
   }
 })
 
-export const { setSuggestionAction, resetSuggestionAction, setSuggestionsListAction, resetSuggestionsListAction } = suggestionSlice.actions
-
+export const {
+  setSuggestionAction,
+  resetSuggestionAction,
+  setSuggestionsListAction,
+  resetSuggestionsListAction
+} = suggestionSlice.actions

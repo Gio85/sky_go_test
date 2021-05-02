@@ -30,6 +30,5 @@ export const entityThunk = (id: string, category: string): IThunk => async (disp
     dispatch(setEntityAction(res))
   } catch (error) {
     console.error('error >>> ', error)
-  } 
+  }
 }
-

@@ -32,7 +32,6 @@ const StyledTitle = styled.h1`
 `
 
 export const NavBar: React.FC = () => {
-
   const onSubmit = (e: any) => {
     e.preventDefault()
     console.log('e >>> ', e.target.input.value)

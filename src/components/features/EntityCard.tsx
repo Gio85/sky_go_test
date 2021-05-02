@@ -122,12 +122,12 @@ export const Card: React.FC<IProp> = (props) => {
           <p>Status: {entity.status}</p>
           <p>Last air date: {entity.last_air_date}</p>
           <p>Seasons: {entity.seasons.length}</p>
-          <p>Created by: {entity.created_by.map(c => c.name).join(', ')}</p>
+          <p>Created by: {entity.created_by.map((c) => c.name).join(', ')}</p>
         </StyledDetails>
       )}
 
       {/*  Movies */}
-      {isMovie(entity) &&  (
+      {isMovie(entity) && (
         <StyledDetails>
           <p>{entity.overview}</p>
           <p>Status: {entity.status}</p>

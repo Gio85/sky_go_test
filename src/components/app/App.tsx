@@ -13,8 +13,7 @@ export const App: React.FC = () => {
   return (
     <StoreProvider>
       <RouterProvider>
-        <Wrapper>
-        </Wrapper>
+        <Wrapper></Wrapper>
       </RouterProvider>
     </StoreProvider>
   )

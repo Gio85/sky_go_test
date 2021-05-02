@@ -69,11 +69,7 @@ export const Suggestions: React.FC<IProp> = (props) => {
                     <StyledImage
                       data-testid="suggestion__image"
                       className="suggestion__image"
-                      src={
-                        getImageUrl(s)
-                          ? `//image.tmdb.org/t/p/original${getImageUrl(s)}`
-                          : '/im-an-actor.jpeg'
-                      }
+                      src={getImageUrl(s) ? `//image.tmdb.org/t/p/original${getImageUrl(s)}` : '/im-an-actor.jpeg'}
                     />
                   </StyledItem>
                 </StyledLink>

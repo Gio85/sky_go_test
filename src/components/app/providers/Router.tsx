@@ -7,7 +7,7 @@ import { EntityDetails } from '../../pages/EntityDetails'
 
 export const RouterProvider: React.FC = () => (
   <Router>
-    <NavBar/>
+    <NavBar />
     <Switch>
       <Route exact path={ROUTE.HOME} component={Home} />
       <Route exact path={ROUTE.READ_SHOW} component={EntityDetails} />
